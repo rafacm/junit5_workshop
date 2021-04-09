@@ -25,7 +25,9 @@ public class RepeatedTestsDemo {
     }
 
     @RepeatedTest(5)
-    void repeatedTestWithRepetitionInfo(RepetitionInfo repetitionInfo) {
+    void repeatedTestWithRepetitionInfo(TestInfo testInfo, RepetitionInfo repetitionInfo) {
+        System.out.println(String.format("Repetition %s -> repetition %s", testInfo.getTestMethod(),
+                repetitionInfo.getCurrentRepetition()));
         assertEquals(5, repetitionInfo.getTotalRepetitions());
     }
 
