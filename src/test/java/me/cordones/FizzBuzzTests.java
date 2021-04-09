@@ -3,6 +3,7 @@ package me.cordones;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -16,6 +17,13 @@ public class FizzBuzzTests {
     @ParameterizedTest(name = "FizzBuzz of {0} is {1}")
     @MethodSource("fizzBuzzArguments")
     void testFizzBuzz(int n, String result) {
+        FizzBuzz fb = new FizzBuzz();
+        assertEquals(fb.of(n), result);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/fizz_buzz-test-data.csv", numLinesToSkip = 1)
+    void testFizzBuzzFromCsvFile(int n, String result) {
         FizzBuzz fb = new FizzBuzz();
         assertEquals(fb.of(n), result);
     }
